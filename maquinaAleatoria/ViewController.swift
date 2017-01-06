@@ -16,10 +16,13 @@ class ViewController: UIViewController {
     
     var tm = Timer()
     var iniciado:Bool = false
-    
+    var timeInterval : Double = 0.01
+    var numMin : Int = 1
+    var numMax : Int = 10
     override func viewDidLoad() {
         super.viewDidLoad()
         labelResultado.text = ""
+        labelNumAleatorio.text = String(Int( (numMin + numMax) / 2 ))
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -58,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     private func iniciarTiempo(){
-        tm = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        tm = Timer.scheduledTimer(timeInterval: timeInterval , target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
     }
     
     func crearNumAleatorio(min : Int, max:Int) -> Int {
@@ -67,8 +70,7 @@ class ViewController: UIViewController {
     }
     
     func  updateTimer() {
-        let nRan = crearNumAleatorio(min: 1, max: 10)
-        print(nRan)
+        let nRan = crearNumAleatorio(min: numMin, max: numMax)
         labelNumAleatorio.text = String(nRan)
     }
 }
